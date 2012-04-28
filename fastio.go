@@ -1,5 +1,11 @@
 package fastio
 
+import (
+	"bufio"
+	"io"
+	"io/ioutil"
+)
+
 type InOut struct {
 	in []byte
 	*bufio.Writer
