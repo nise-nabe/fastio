@@ -18,7 +18,7 @@ func NewInOut(r io.Reader, w io.Writer) *InOut {
 	return &InOut{in, bufio.NewWriter(w)}
 }
 
-func (s *InOut) next() (r int) {
+func (s *InOut) Next() (r int) {
 	buf := s.in
 	p := 1
 	for (buf[0] < '0' || '9' < buf[0]) && buf[0] != '-' {
@@ -38,7 +38,7 @@ func (s *InOut) next() (r int) {
 	return
 }
 
-func (s *InOut) nextLine() (r string) {
+func (s *InOut) NextLine() (r string) {
 	buf := s.in
 	for buf[0] == '\n' {
 		buf = buf[1:]
@@ -52,7 +52,7 @@ func (s *InOut) nextLine() (r string) {
 	return
 }
 
-func (s *InOut) nextStr() (r string) {
+func (s *InOut) NextStr() (r string) {
 	buf := s.in
 	for buf[0] == '\n' || buf[0] == ' ' {
 		buf = buf[1:]
@@ -66,7 +66,7 @@ func (s *InOut) nextStr() (r string) {
 	return
 }
 
-func (s *InOut) print(os ...interface{}) {
+func (s *InOut) Print(os ...interface{}) {
 	for _, o := range os {
 		switch o.(type) {
 		case byte:
@@ -83,13 +83,13 @@ func (s *InOut) print(os ...interface{}) {
 	}
 }
 
-func (s *InOut) println(os ...interface{}) {
+func (s *InOut) Println(os ...interface{}) {
 	for _, o := range os {
 		s.print(o)
 	}
 	s.print("\n")
 }
 
-func (s *InOut) printlnNow(o interface{}) {
+func (s *InOut) PrintlnNow(o interface{}) {
 	fmt.Println(o)
 }
