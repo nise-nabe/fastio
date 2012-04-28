@@ -2,8 +2,10 @@ package fastio
 
 import (
 	"bufio"
+	"fmt"
 	"io"
 	"io/ioutil"
+	"strconv"
 )
 
 type InOut struct {
