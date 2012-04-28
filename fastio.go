@@ -85,9 +85,9 @@ func (s *InOut) Print(os ...interface{}) {
 
 func (s *InOut) Println(os ...interface{}) {
 	for _, o := range os {
-		s.print(o)
+		s.Print(o)
 	}
-	s.print("\n")
+	s.Print("\n")
 }
 
 func (s *InOut) PrintlnNow(o interface{}) {
