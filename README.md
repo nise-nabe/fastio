@@ -1,7 +1,7 @@
 fastio
 ======
 
-This library use in programming contest for nise\_nabe.
+This library use for programming contest.
 
 ## Installation
 
