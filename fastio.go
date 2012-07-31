@@ -1,3 +1,11 @@
+// This library use for programming contest like a SPOJ or GCJ.
+//
+// Example:
+// 	js := fastio.NewInOut(os.Stdin, os.Stdout)
+// 	jn := s.Next()
+// 	js.Println("Hello, World! ", n)
+// 	js.Flush()
+
 package fastio
 
 import (
@@ -18,6 +26,7 @@ func NewInOut(r io.Reader, w io.Writer) *InOut {
 	return &InOut{in, bufio.NewWriter(w)}
 }
 
+// Get Next Integer
 func (s *InOut) Next() (r int) {
 	buf := s.in
 	p := 1
@@ -38,6 +47,7 @@ func (s *InOut) Next() (r int) {
 	return
 }
 
+// Get Next Line String
 func (s *InOut) NextLine() (r string) {
 	buf := s.in
 	for buf[0] == '\n' {
@@ -52,6 +62,7 @@ func (s *InOut) NextLine() (r string) {
 	return
 }
 
+// Get Next String using delimiter whitespace
 func (s *InOut) NextStr() (r string) {
 	buf := s.in
 	for buf[0] == '\n' || buf[0] == ' ' {
@@ -66,6 +77,7 @@ func (s *InOut) NextStr() (r string) {
 	return
 }
 
+// Print Strings using the suitable way to change type
 func (s *InOut) Print(os ...interface{}) {
 	for _, o := range os {
 		switch o.(type) {
@@ -83,6 +95,7 @@ func (s *InOut) Print(os ...interface{}) {
 	}
 }
 
+// Print Strings using the suitable way to change type with new line
 func (s *InOut) Println(os ...interface{}) {
 	for _, o := range os {
 		s.Print(o)
@@ -90,6 +103,7 @@ func (s *InOut) Println(os ...interface{}) {
 	s.Print("\n")
 }
 
+// Print immediately with new line (for debug)
 func (s *InOut) PrintlnNow(o interface{}) {
 	fmt.Println(o)
 }
