@@ -13,3 +13,7 @@ This library use for programming contest.
     n := s.Next()
     s.Println("Hello, World! ", n)
     s.Flush()
+
+License
+-------
+[New BSD license](http://www.opensource.org/licenses/BSD-3-Clause)
