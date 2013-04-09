@@ -16,69 +16,60 @@ import (
 	"bufio"
 	"fmt"
 	"io"
-	"io/ioutil"
 	"strconv"
 )
 
 type InOut struct {
-	in []byte
+	*bufio.Reader
 	*bufio.Writer
 }
 
 func NewInOut(r io.Reader, w io.Writer) *InOut {
-	in, _ := ioutil.ReadAll(r)
-	return &InOut{in, bufio.NewWriter(w)}
+	return &InOut{bufio.NewReader(r), bufio.NewWriter(w)}
 }
 
 // Get Next Integer
 func (s *InOut) Next() (r int) {
-	buf := s.in
+	b, _ := s.ReadByte()
 	p := 1
-	for (buf[0] < '0' || '9' < buf[0]) && buf[0] != '-' {
-		buf = buf[1:]
+	for (b < '0' || '9' < b) && b != '-' {
+		b, _ = s.ReadByte()
 	}
-	if buf[0] == '-' {
+	if b == '-' {
 		p = -1
-		buf = buf[1:]
-
+		b, _ = s.ReadByte()
 	}
-	for '0' <= buf[0] && buf[0] <= '9' {
-		r = 10*r + int(buf[0]-'0')
-		buf = buf[1:]
+	for '0' <= b && b <= '9' {
+		r = 10*r + int(b-'0')
+		b, _ = s.ReadByte()
 	}
-	r *= p
-	s.in = buf
-	return
+	return r * p
 }
 
 // Get Next Line String
 func (s *InOut) NextLine() (r string) {
-	buf := s.in
-	for buf[0] == '\n' {
-		buf = buf[1:]
+	b, _ := s.ReadByte()
+	for b == '\n' {
+		b, _ = s.ReadByte()
 	}
-	p := 0
-	for buf[p] != '\n' {
-		p++
+	buf := make([]byte, 0)
+	for ; b != '\n'; b, _ = s.ReadByte() {
+		buf = append(buf, b)
 	}
-	r = string(buf[0:p])
-	s.in = buf[p:]
-	return
+	return string(buf)
 }
 
 // Get Next String using delimiter whitespace
 func (s *InOut) NextStr() (r string) {
-	buf := s.in
-	for buf[0] == '\n' || buf[0] == ' ' {
-		buf = buf[1:]
+	b, _ := s.ReadByte()
+	for b == '\n' || b == ' ' {
+		b, _ = s.ReadByte()
 	}
-	p := 0
-	for buf[p] != '\n' && buf[p] != ' ' {
-		p++
+	buf := make([]byte, 0)
+	for ; b != '\n' && b != ' '; b, _ = s.ReadByte() {
+		buf = append(buf, b)
 	}
-	r = string(buf[0:p])
-	s.in = buf[p:]
-	return
+	return string(buf)
 }
 
 // Print Strings using the suitable way to change type
