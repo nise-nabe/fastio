@@ -46,6 +46,24 @@ func (s *InOut) Next() (r int) {
 	return r * p
 }
 
+// Get Next int64
+func (s *InOut) NextInt64() (r int64) {
+	b, _ := s.ReadByte()
+	p := int64(1)
+	for (b < '0' || '9' < b) && b != '-' {
+		b, _ = s.ReadByte()
+	}
+	if b == '-' {
+		p = -1
+		b, _ = s.ReadByte()
+	}
+	for '0' <= b && b <= '9' {
+		r = 10*r + int64(b-'0')
+		b, _ = s.ReadByte()
+	}
+	return r * p
+}
+
 // Get Next Line String
 func (s *InOut) NextLine() (r string) {
 	b, _ := s.ReadByte()
