@@ -79,6 +79,11 @@ func (s *InOut) NextLine() (r string) {
 
 // Get Next String using delimiter whitespace
 func (s *InOut) NextStr() (r string) {
+	return string(s.NextBytes())
+}
+
+// Get Next String using delimiter whitespace
+func (s *InOut) NextBytes() (r []byte) {
 	b, _ := s.ReadByte()
 	for b == '\n' || b == ' ' {
 		b, _ = s.ReadByte()
@@ -87,7 +92,7 @@ func (s *InOut) NextStr() (r string) {
 	for ; b != '\n' && b != ' '; b, _ = s.ReadByte() {
 		buf = append(buf, b)
 	}
-	return string(buf)
+	return buf
 }
 
 // Print Strings using the suitable way to change type
