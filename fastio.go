@@ -67,11 +67,11 @@ func (s *InOut) NextInt64() (r int64) {
 // Get Next Line String
 func (s *InOut) NextLine() (r string) {
 	b, _ := s.ReadByte()
-	for b == '\n' {
+	for b == '\r' || b == '\n' {
 		b, _ = s.ReadByte()
 	}
 	buf := make([]byte, 0)
-	for ; b != '\n'; b, _ = s.ReadByte() {
+	for ; b != '\r' && b != '\n'; b, _ = s.ReadByte() {
 		buf = append(buf, b)
 	}
 	return string(buf)
@@ -85,11 +85,11 @@ func (s *InOut) NextStr() (r string) {
 // Get Next String using delimiter whitespace
 func (s *InOut) NextBytes() (r []byte) {
 	b, _ := s.ReadByte()
-	for b == '\n' || b == ' ' {
+	for b == '\r' || b == '\n' || b == ' ' {
 		b, _ = s.ReadByte()
 	}
 	buf := make([]byte, 0)
-	for ; b != '\n' && b != ' '; b, _ = s.ReadByte() {
+	for ; b != '\r' && b != '\n' && b != ' '; b, _ = s.ReadByte() {
 		buf = append(buf, b)
 	}
 	return buf
