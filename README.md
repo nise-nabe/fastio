@@ -16,7 +16,7 @@ This library use for programming contest.
 
 License
 -------
-[New BSD license](http://www.opensource.org/licenses/BSD-3-Clause)
+[The BSD 2-Clause License](http://www.opensource.org/licenses/BSD-2-Clause)
 
 Thanks
 ------
