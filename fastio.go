@@ -64,6 +64,12 @@ func (s *InOut) NextInt64() (r int64) {
 	return r * p
 }
 
+// Get Next float64
+func (s *InOut) NextFloat() (r float64) {
+	f, _ := strconv.ParseFloat(s.NextStr(), 64)
+	return f
+}
+
 // Get Next Line String
 func (s *InOut) NextLine() (r string) {
 	b, _ := s.ReadByte()
